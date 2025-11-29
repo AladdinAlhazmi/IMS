@@ -184,17 +184,27 @@
   }
 }
 
-/* RTL Flexbox Layout Fixes */
-[dir="rtl"] .flex.justify-between {
-  flex-direction: row;
+/* RTL Flexbox Layout Fixes - Reverse flex containers to flip layout */
+[dir="rtl"] .rtl-flip {
+  flex-direction: row-reverse;
 }
 
-[dir="rtl"] .flex.justify-end {
-  justify-content: flex-start;
+/* For header and main layout containers that need complete reversal */
+[dir="rtl"] .header-container {
+  flex-direction: row-reverse;
 }
 
-[dir="rtl"] .flex.items-center.justify-end {
-  justify-content: flex-start;
+/* Ensure flex gap still works correctly in RTL */
+[dir="rtl"] .flex.gap-1,
+[dir="rtl"] .flex.gap-2,
+[dir="rtl"] .flex.gap-3,
+[dir="rtl"] .flex.gap-4 {
+  /* gap is direction-agnostic, no change needed */
+}
+
+/* For containers that should flip their children order */
+[dir="rtl"] .flex-rtl-flip {
+  flex-direction: row-reverse;
 }
 
 /* RTL Text Alignment */
