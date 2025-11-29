@@ -14,7 +14,7 @@ export interface ProductFormData {
   price: number;
 }
 
-export type SortField = 'name' | 'price' | 'quantity' | 'createdAt';
+export type SortField = 'name' | 'category' | 'price' | 'quantity' | 'createdAt';
 export type SortDirection = 'asc' | 'desc';
 
 export interface SortConfig {

@@ -110,6 +110,9 @@ export class ProductService {
         case 'name':
           comparison = a.name.localeCompare(b.name);
           break;
+        case 'category':
+          comparison = a.category.localeCompare(b.category);
+          break;
         case 'price':
           comparison = a.price - b.price;
           break;

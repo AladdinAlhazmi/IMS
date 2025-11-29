@@ -33,12 +33,12 @@
       </div>
       
       <!-- Add Product Button -->
-      <a routerLink="/products/new" class="btn-primary">
+      <button (click)="openAddDialog()" class="btn-primary">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
         <span>Add Product</span>
-      </a>
+      </button>
     </div>
   </div>
 
@@ -89,12 +89,12 @@
           Clear Filters
         </button>
       } @else {
-        <a routerLink="/products/new" class="btn-primary">
+        <button (click)="openAddDialog()" class="btn-primary">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
           </svg>
           Add Product
-        </a>
+        </button>
       }
     </div>
   } @else {
@@ -104,12 +104,109 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Product</th>
-              <th>Category</th>
-              <th class="text-right">Price</th>
-              <th class="text-right">Quantity</th>
-              <th>Status</th>
-              <th>Added</th>
+              <th 
+                (click)="onColumnSort('name')" 
+                class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center gap-1">
+                  <span>Product</span>
+                  @if (getSortDirection('name') === 'asc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                  } @else if (getSortDirection('name') === 'desc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  } @else {
+                    <svg class="w-4 h-4 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                  }
+                </div>
+              </th>
+              <th 
+                (click)="onColumnSort('category')" 
+                class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center gap-1">
+                  <span>Category</span>
+                  @if (getSortDirection('category') === 'asc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                  } @else if (getSortDirection('category') === 'desc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  } @else {
+                    <svg class="w-4 h-4 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                  }
+                </div>
+              </th>
+              <th 
+                (click)="onColumnSort('price')" 
+                class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center justify-end gap-1">
+                  <span>Price</span>
+                  @if (getSortDirection('price') === 'asc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                  } @else if (getSortDirection('price') === 'desc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  } @else {
+                    <svg class="w-4 h-4 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                  }
+                </div>
+              </th>
+              <th 
+                (click)="onColumnSort('quantity')" 
+                class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center justify-end gap-1">
+                  <span>Quantity</span>
+                  @if (getSortDirection('quantity') === 'asc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                  } @else if (getSortDirection('quantity') === 'desc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  } @else {
+                    <svg class="w-4 h-4 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                  }
+                </div>
+              </th>
+              <th>
+                <span>Status</span>
+              </th>
+              <th 
+                (click)="onColumnSort('createdAt')" 
+                class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center gap-1">
+                  <span>Added</span>
+                  @if (getSortDirection('createdAt') === 'asc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                    </svg>
+                  } @else if (getSortDirection('createdAt') === 'desc') {
+                    <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  } @else {
+                    <svg class="w-4 h-4 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
+                  }
+                </div>
+              </th>
               <th class="text-right">Actions</th>
             </tr>
           </thead>
@@ -138,14 +235,14 @@
                 </td>
                 <td>
                   <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <a
-                      [routerLink]="['/products/edit', product.id]"
+                    <button
+                      (click)="openEditDialog(product.id)"
                       class="p-2 rounded-lg text-surface-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
                       aria-label="Edit product">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                       </svg>
-                    </a>
+                    </button>
                     <button
                       (click)="confirmDelete(product.id)"
                       class="p-2 rounded-lg text-surface-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
@@ -197,14 +294,14 @@
                 {{ formatDate(product.createdAt) }}
               </span>
               <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <a
-                  [routerLink]="['/products/edit', product.id]"
+                <button
+                  (click)="openEditDialog(product.id)"
                   class="p-2 rounded-lg text-surface-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
                   aria-label="Edit product">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                   </svg>
-                </a>
+                </button>
                 <button
                   (click)="confirmDelete(product.id)"
                   class="p-2 rounded-lg text-surface-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
@@ -264,3 +361,11 @@
   </div>
 }
 
+<!-- Add/Edit Product Dialog -->
+@if (showProductDialog()) {
+  <app-product-form
+    [isDialog]="true"
+    [id]="editingProductId()"
+    (closeDialog)="closeDialog()">
+  </app-product-form>
+}

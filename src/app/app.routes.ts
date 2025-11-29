@@ -12,11 +12,6 @@ export const routes: Routes = [
       .then(m => m.ProductListComponent)
   },
   {
-    path: 'products/new',
-    loadComponent: () => import('./features/products/components/product-form/product-form.component')
-      .then(m => m.ProductFormComponent)
-  },
-  {
     path: 'products/edit/:id',
     loadComponent: () => import('./features/products/components/product-form/product-form.component')
       .then(m => m.ProductFormComponent)

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal, Input } from '@angular/core';
+import { Component, OnInit, inject, signal, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,8 @@ import { Product, ProductFormData } from '@core/models/product.model';
 })
 export class ProductFormComponent implements OnInit {
   @Input() id?: string;
+  @Input() isDialog = false;
+  @Output() closeDialog = new EventEmitter<void>();
 
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
@@ -54,8 +56,12 @@ export class ProductFormComponent implements OnInit {
           quantity: product.quantity
         });
       } else {
-        // Product not found, redirect to list
-        this.router.navigate(['/products']);
+        // Product not found, close dialog or redirect to list
+        if (this.isDialog) {
+          this.closeDialog.emit();
+        } else {
+          this.router.navigate(['/products']);
+        }
       }
     }
   }
@@ -140,13 +146,21 @@ export class ProductFormComponent implements OnInit {
         const productId = parseInt(this.id, 10);
         const updated = this.productService.update(productId, formData);
         if (updated) {
-          this.router.navigate(['/products']);
+          if (this.isDialog) {
+            this.closeDialog.emit();
+          } else {
+            this.router.navigate(['/products']);
+          }
         } else {
           this.submitError.set('Failed to update product. Please try again.');
         }
       } else {
         this.productService.create(formData);
-        this.router.navigate(['/products']);
+        if (this.isDialog) {
+          this.closeDialog.emit();
+        } else {
+          this.router.navigate(['/products']);
+        }
       }
     } catch (error) {
       this.submitError.set('An unexpected error occurred. Please try again.');
@@ -156,7 +170,11 @@ export class ProductFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/products']);
+    if (this.isDialog) {
+      this.closeDialog.emit();
+    } else {
+      this.router.navigate(['/products']);
+    }
   }
 }
 

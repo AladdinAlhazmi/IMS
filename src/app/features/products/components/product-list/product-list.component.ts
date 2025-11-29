@@ -1,21 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ProductService } from '@core/services/product.service';
-import { Product, SortField, SortDirection } from '@core/models/product.model';
+import { SortField, SortDirection } from '@core/models/product.model';
 import { QuantityHighlightDirective } from '@core/directives/quantity-highlight.directive';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
+import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     QuantityHighlightDirective,
     PaginationComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    ProductFormComponent
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -33,6 +33,10 @@ export class ProductListComponent {
   // Local UI state
   deleteConfirmId = signal<number | null>(null);
   viewMode = signal<'table' | 'cards'>('table');
+  
+  // Dialog state
+  showProductDialog = signal(false);
+  editingProductId = signal<string | undefined>(undefined);
 
   onSearchChange(keyword: string): void {
     this.productService.setSearchKeyword(keyword);
@@ -52,6 +56,35 @@ export class ProductListComponent {
 
   onResetFilters(): void {
     this.productService.resetFilters();
+  }
+
+  // Dialog methods
+  openAddDialog(): void {
+    this.editingProductId.set(undefined);
+    this.showProductDialog.set(true);
+  }
+
+  openEditDialog(id: number): void {
+    this.editingProductId.set(id.toString());
+    this.showProductDialog.set(true);
+  }
+
+  closeDialog(): void {
+    this.showProductDialog.set(false);
+    this.editingProductId.set(undefined);
+  }
+
+  // Column sorting
+  onColumnSort(field: SortField): void {
+    this.productService.setSortConfig(field);
+  }
+
+  getSortDirection(field: SortField): 'asc' | 'desc' | null {
+    const sortConfig = this.uiState().sortConfig;
+    if (sortConfig.field === field) {
+      return sortConfig.direction;
+    }
+    return null;
   }
 
   confirmDelete(id: number): void {
@@ -98,4 +131,3 @@ export class ProductListComponent {
     return 'In Stock';
   }
 }
-
