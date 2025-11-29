@@ -146,8 +146,8 @@
               </th>
               <th 
                 (click)="onColumnSort('price')" 
-                class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
-                <div class="flex items-center justify-end gap-1">
+                class="ltr:text-right rtl:text-left cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center ltr:justify-end rtl:justify-start gap-1">
                   <span>{{ 'table.price' | translate }}</span>
                   @if (getSortDirection('price') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,8 +166,8 @@
               </th>
               <th 
                 (click)="onColumnSort('quantity')" 
-                class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
-                <div class="flex items-center justify-end gap-1">
+                class="ltr:text-right rtl:text-left cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
+                <div class="flex items-center ltr:justify-end rtl:justify-start gap-1">
                   <span>{{ 'table.quantity' | translate }}</span>
                   @if (getSortDirection('quantity') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,7 +207,7 @@
                   }
                 </div>
               </th>
-              <th class="text-right">{{ 'table.actions' | translate }}</th>
+              <th class="ltr:text-right rtl:text-left">{{ 'table.actions' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -219,10 +219,10 @@
                 <td>
                   <span class="badge-primary">{{ product.category }}</span>
                 </td>
-                <td class="text-right font-medium text-surface-900 dark:text-white">
+                <td class="ltr:text-right rtl:text-left font-medium text-surface-900 dark:text-white">
                   {{ formatPrice(product.price) }}
                 </td>
-                <td class="text-right font-medium">
+                <td class="ltr:text-right rtl:text-left font-medium">
                   {{ product.quantity }}
                 </td>
                 <td>
@@ -234,7 +234,7 @@
                   {{ formatDate(product.createdAt) }}
                 </td>
                 <td>
-                  <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="flex items-center ltr:justify-end rtl:justify-start gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
                       (click)="openEditDialog(product.id)"
                       class="p-2 rounded-lg text-surface-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"

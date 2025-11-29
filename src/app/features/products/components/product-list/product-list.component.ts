@@ -118,11 +118,12 @@ export class ProductListComponent {
   }
 
   formatDate(date: Date): string {
-    const locale = this.languageService.currentLanguage() === 'ar' ? 'ar-SA' : 'en-US';
+    const locale = this.languageService.currentLanguage() === 'ar' ? 'ar' : 'en-US';
     return new Intl.DateTimeFormat(locale, {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      calendar: 'gregory'
     }).format(new Date(date));
   }
 

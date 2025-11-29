@@ -4,6 +4,13 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   darkMode: 'class',
+  // Enable RTL support using dir attribute
+  plugins: [
+    function({ addVariant }) {
+      addVariant('rtl', '[dir="rtl"] &');
+      addVariant('ltr', '[dir="ltr"] &');
+    }
+  ],
   theme: {
     extend: {
       colors: {
@@ -86,6 +93,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
 }
 

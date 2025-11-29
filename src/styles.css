@@ -184,3 +184,117 @@
   }
 }
 
+/* RTL Flexbox Layout Fixes */
+[dir="rtl"] .flex.justify-between {
+  flex-direction: row;
+}
+
+[dir="rtl"] .flex.justify-end {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .flex.items-center.justify-end {
+  justify-content: flex-start;
+}
+
+/* RTL Text Alignment */
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* RTL Positioning Fixes */
+[dir="rtl"] .left-0 {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .right-0 {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .-left-1\/4 {
+  left: auto;
+  right: -25%;
+}
+
+[dir="rtl"] .-right-1\/4 {
+  right: auto;
+  left: -25%;
+}
+
+[dir="rtl"] .right-1\/4 {
+  right: auto;
+  left: 25%;
+}
+
+/* RTL Margin and Padding Fixes */
+[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* RTL Gap and Spacing */
+[dir="rtl"] .space-x-1 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* RTL Input Icons Positioning */
+[dir="rtl"] .input {
+  text-align: right;
+}
+
+/* RTL Badge Positioning */
+[dir="rtl"] .absolute.-top-1.-right-1 {
+  right: auto;
+  left: -0.25rem;
+}
+
+/* RTL Table Actions */
+[dir="rtl"] .table td:last-child .flex.justify-end {
+  justify-content: flex-start;
+}
+
+/* RTL Border Radius */
+[dir="rtl"] .rounded-l-xl {
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+[dir="rtl"] .rounded-r-xl {
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+
+/* RTL Card Layout */
+[dir="rtl"] .card .flex.items-start.justify-between {
+  flex-direction: row;
+}
+
+/* RTL Modal Positioning */
+[dir="rtl"] .fixed.inset-0 {
+  direction: rtl;
+}
+
+/* RTL Form Labels */
+[dir="rtl"] .label {
+  text-align: right;
+}
+
+/* RTL Select Arrow */
+[dir="rtl"] select {
+  background-position: left 0.5rem center;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+}
+
