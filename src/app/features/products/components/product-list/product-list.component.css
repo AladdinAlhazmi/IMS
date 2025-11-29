@@ -1,0 +1,28 @@
+.view-toggle-btn {
+  @apply p-2 rounded-lg text-surface-500 transition-all duration-200;
+}
+
+.view-toggle-btn:hover {
+  @apply text-surface-700 dark:text-surface-300;
+}
+
+.view-toggle-btn.active {
+  @apply bg-white dark:bg-surface-700 text-primary-600 dark:text-primary-400 shadow-sm;
+}
+
+/* Card animation on load */
+.card {
+  animation: slideUp 0.4s ease-out backwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

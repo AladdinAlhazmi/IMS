@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "name": "MacBook Pro 16\"",
+    "category": "Electronics",
+    "quantity": 15,
+    "price": 2499.99,
+    "createdAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Ergonomic Office Chair",
+    "category": "Furniture",
+    "quantity": 8,
+    "price": 349.99,
+    "createdAt": "2024-01-18T14:45:00.000Z"
+  },
+  {
+    "id": 3,
+    "name": "Wireless Keyboard",
+    "category": "Electronics",
+    "quantity": 45,
+    "price": 79.99,
+    "createdAt": "2024-01-20T09:15:00.000Z"
+  },
+  {
+    "id": 4,
+    "name": "Standing Desk",
+    "category": "Furniture",
+    "quantity": 3,
+    "price": 599.99,
+    "createdAt": "2024-02-01T11:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "name": "4K Monitor 27\"",
+    "category": "Electronics",
+    "quantity": 22,
+    "price": 449.99,
+    "createdAt": "2024-02-05T16:30:00.000Z"
+  },
+  {
+    "id": 6,
+    "name": "USB-C Hub",
+    "category": "Electronics",
+    "quantity": 67,
+    "price": 49.99,
+    "createdAt": "2024-02-10T08:20:00.000Z"
+  },
+  {
+    "id": 7,
+    "name": "Desk Lamp LED",
+    "category": "Furniture",
+    "quantity": 5,
+    "price": 89.99,
+    "createdAt": "2024-02-12T13:45:00.000Z"
+  },
+  {
+    "id": 8,
+    "name": "Noise Cancelling Headphones",
+    "category": "Electronics",
+    "quantity": 18,
+    "price": 299.99,
+    "createdAt": "2024-02-15T10:00:00.000Z"
+  },
+  {
+    "id": 9,
+    "name": "Webcam HD 1080p",
+    "category": "Electronics",
+    "quantity": 34,
+    "price": 129.99,
+    "createdAt": "2024-02-18T15:30:00.000Z"
+  },
+  {
+    "id": 10,
+    "name": "Filing Cabinet",
+    "category": "Furniture",
+    "quantity": 12,
+    "price": 199.99,
+    "createdAt": "2024-02-20T09:00:00.000Z"
+  },
+  {
+    "id": 11,
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "quantity": 56,
+    "price": 39.99,
+    "createdAt": "2024-02-22T11:30:00.000Z"
+  },
+  {
+    "id": 12,
+    "name": "Bookshelf Oak",
+    "category": "Furniture",
+    "quantity": 7,
+    "price": 249.99,
+    "createdAt": "2024-02-25T14:15:00.000Z"
+  },
+  {
+    "id": 13,
+    "name": "External SSD 1TB",
+    "category": "Electronics",
+    "quantity": 28,
+    "price": 119.99,
+    "createdAt": "2024-02-28T10:45:00.000Z"
+  },
+  {
+    "id": 14,
+    "name": "Whiteboard 48x36",
+    "category": "Office Supplies",
+    "quantity": 9,
+    "price": 89.99,
+    "createdAt": "2024-03-01T08:30:00.000Z"
+  },
+  {
+    "id": 15,
+    "name": "Printer Paper (5 Reams)",
+    "category": "Office Supplies",
+    "quantity": 150,
+    "price": 34.99,
+    "createdAt": "2024-03-03T12:00:00.000Z"
+  },
+  {
+    "id": 16,
+    "name": "Conference Table",
+    "category": "Furniture",
+    "quantity": 2,
+    "price": 1299.99,
+    "createdAt": "2024-03-05T16:00:00.000Z"
+  },
+  {
+    "id": 17,
+    "name": "Sticky Notes Pack",
+    "category": "Office Supplies",
+    "quantity": 200,
+    "price": 12.99,
+    "createdAt": "2024-03-08T09:30:00.000Z"
+  },
+  {
+    "id": 18,
+    "name": "Laptop Stand Adjustable",
+    "category": "Electronics",
+    "quantity": 25,
+    "price": 69.99,
+    "createdAt": "2024-03-10T11:15:00.000Z"
+  },
+  {
+    "id": 19,
+    "name": "Desk Organizer",
+    "category": "Office Supplies",
+    "quantity": 42,
+    "price": 24.99,
+    "createdAt": "2024-03-12T14:30:00.000Z"
+  },
+  {
+    "id": 20,
+    "name": "Mechanical Keyboard RGB",
+    "category": "Electronics",
+    "quantity": 19,
+    "price": 149.99,
+    "createdAt": "2024-03-15T10:00:00.000Z"
+  }
+]
+

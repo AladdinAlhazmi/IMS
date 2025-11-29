@@ -1,0 +1,112 @@
+<div class="min-h-screen bg-gradient-to-br from-surface-50 via-surface-100 to-primary-50 dark:from-surface-950 dark:via-surface-900 dark:to-surface-950">
+  <!-- Background Pattern -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/4 -left-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-primary-400/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass border-b border-surface-200/50 dark:border-surface-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a routerLink="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg shadow-primary-500/25 group-hover:shadow-xl group-hover:shadow-primary-500/30 transition-shadow">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <span class="text-xl font-semibold text-surface-900 dark:text-white hidden sm:block">
+            Inven<span class="text-gradient">tory</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-1">
+          <a routerLink="/products" 
+             routerLinkActive="bg-primary-500/10 text-primary-600 dark:text-primary-400"
+             [routerLinkActiveOptions]="{exact: true}"
+             class="px-4 py-2 rounded-xl text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors">
+            Products
+          </a>
+          <a routerLink="/products/new" 
+             routerLinkActive="bg-primary-500/10 text-primary-600 dark:text-primary-400"
+             class="px-4 py-2 rounded-xl text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors">
+            Add Product
+          </a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="flex items-center gap-2">
+          <!-- Dark Mode Toggle -->
+          <button 
+            (click)="toggleDarkMode()"
+            class="p-2.5 rounded-xl text-surface-500 hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-800 transition-all"
+            [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+            @if (isDarkMode()) {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+            } @else {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            }
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button 
+            (click)="toggleMobileMenu()"
+            class="md:hidden p-2.5 rounded-xl text-surface-500 hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-800 transition-all">
+            @if (isMobileMenuOpen()) {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            } @else {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen()) {
+      <div class="md:hidden border-t border-surface-200/50 dark:border-surface-800/50 animate-slide-down">
+        <nav class="px-4 py-3 space-y-1">
+          <a routerLink="/products" 
+             routerLinkActive="bg-primary-500/10 text-primary-600 dark:text-primary-400"
+             [routerLinkActiveOptions]="{exact: true}"
+             (click)="closeMobileMenu()"
+             class="block px-4 py-2.5 rounded-xl text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors">
+            Products
+          </a>
+          <a routerLink="/products/new" 
+             routerLinkActive="bg-primary-500/10 text-primary-600 dark:text-primary-400"
+             (click)="closeMobileMenu()"
+             class="block px-4 py-2.5 rounded-xl text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors">
+            Add Product
+          </a>
+        </nav>
+      </div>
+    }
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-surface-200/50 dark:border-surface-800/50 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <p class="text-center text-sm text-surface-500 dark:text-surface-500">
+        Built with Angular 17 & Tailwind CSS
+      </p>
+    </div>
+  </footer>
+</div>
+
