@@ -3,7 +3,7 @@
   <div class="flex flex-col sm:flex-row gap-3">
     <!-- Search Input -->
     <div class="relative flex-1">
-      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+      <div class="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none">
         <svg class="w-5 h-5 text-surface-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
@@ -12,12 +12,12 @@
         type="text"
         [value]="searchInput()"
         (input)="onSearchInput($event)"
-        placeholder="Search products..."
-        class="input pl-11 pr-10">
+        [placeholder]="'filter.searchProducts' | translate"
+        class="input ps-11 pe-10">
       @if (searchInput()) {
         <button
           (click)="clearSearch()"
-          class="absolute inset-y-0 right-0 pr-4 flex items-center text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors">
+          class="absolute inset-y-0 end-0 pe-4 flex items-center text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
@@ -32,7 +32,7 @@
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
       </svg>
-      <span>Filters</span>
+      <span>{{ 'common.filters' | translate }}</span>
       @if (hasActiveFilters()) {
         <span class="absolute -top-1 -right-1 w-3 h-3 bg-primary-500 rounded-full"></span>
       }
@@ -45,7 +45,7 @@
         [value]="selectedCategory"
         (change)="onCategoryChange($event)"
         class="input w-auto min-w-[140px]">
-        <option value="">All Categories</option>
+        <option value="">{{ 'filter.allCategories' | translate }}</option>
         @for (category of categories; track category) {
           <option [value]="category">{{ category }}</option>
         }
@@ -58,13 +58,13 @@
           (change)="onSortFieldChange($event)"
           class="input w-auto min-w-[130px]">
           @for (option of sortOptions; track option.field) {
-            <option [value]="option.field">{{ option.label }}</option>
+            <option [value]="option.field">{{ option.labelKey | translate }}</option>
           }
         </select>
         <button
           (click)="toggleSortDirection()"
           class="btn-secondary px-3"
-          [attr.aria-label]="sortConfig.direction === 'asc' ? 'Sort descending' : 'Sort ascending'">
+          [attr.aria-label]="sortConfig.direction === 'asc' ? ('filter.sortDescending' | translate) : ('filter.sortAscending' | translate)">
           @if (sortConfig.direction === 'asc') {
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
@@ -85,7 +85,7 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
-          <span>Reset</span>
+          <span>{{ 'common.reset' | translate }}</span>
         </button>
       }
     </div>
@@ -96,12 +96,12 @@
     <div class="sm:hidden p-4 rounded-xl bg-surface-50 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700 space-y-4 animate-slide-down">
       <!-- Category Filter -->
       <div>
-        <label class="label">Category</label>
+        <label class="label">{{ 'form.category' | translate }}</label>
         <select
           [value]="selectedCategory"
           (change)="onCategoryChange($event)"
           class="input">
-          <option value="">All Categories</option>
+          <option value="">{{ 'filter.allCategories' | translate }}</option>
           @for (category of categories; track category) {
             <option [value]="category">{{ category }}</option>
           }
@@ -110,14 +110,14 @@
 
       <!-- Sort By -->
       <div>
-        <label class="label">Sort By</label>
+        <label class="label">{{ 'filter.sortBy' | translate }}</label>
         <div class="flex gap-2">
           <select
             [value]="sortConfig.field"
             (change)="onSortFieldChange($event)"
             class="input flex-1">
             @for (option of sortOptions; track option.field) {
-              <option [value]="option.field">{{ option.label }}</option>
+              <option [value]="option.field">{{ option.labelKey | translate }}</option>
             }
           </select>
           <button
@@ -144,10 +144,9 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
-          <span>Reset Filters</span>
+          <span>{{ 'common.resetFilters' | translate }}</span>
         </button>
       }
     </div>
   }
 </div>
-

@@ -13,17 +13,17 @@
         <div class="flex items-center justify-between">
           <div>
             <h2 class="text-xl font-bold text-surface-900 dark:text-white">
-              {{ isEditMode() ? 'Edit Product' : 'Add New Product' }}
+              {{ isEditMode() ? ('products.editProduct' | translate) : ('products.newProduct' | translate) }}
             </h2>
             <p class="mt-1 text-sm text-surface-500 dark:text-surface-400">
-              {{ isEditMode() ? 'Update the product information below' : 'Fill in the details to add a new product' }}
+              {{ isEditMode() ? ('form.updateInfo' | translate) : ('form.addInfo' | translate) }}
             </p>
           </div>
           <button
             type="button"
             (click)="onCancel()"
             class="p-2 rounded-lg text-surface-400 hover:text-surface-600 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
-            aria-label="Close dialog">
+            [attr.aria-label]="'aria.closeDialog' | translate">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
@@ -48,7 +48,7 @@
           <!-- Product Name -->
           <div>
             <label for="dialog-name" class="label">
-              Product Name <span class="text-red-500">*</span>
+              {{ 'form.productName' | translate }} <span class="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -56,7 +56,7 @@
               formControlName="name"
               [class.input-error]="f['name'].touched && f['name'].invalid"
               class="input"
-              placeholder="Enter product name">
+              [placeholder]="'form.enterProductName' | translate">
             @if (f['name'].touched && f['name'].invalid) {
               <p class="mt-1.5 text-sm text-red-500 flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,14 +70,14 @@
           <!-- Category -->
           <div>
             <label for="dialog-category" class="label">
-              Category <span class="text-red-500">*</span>
+              {{ 'form.category' | translate }} <span class="text-red-500">*</span>
             </label>
             <select
               id="dialog-category"
               formControlName="category"
               [class.input-error]="f['category'].touched && f['category'].invalid"
               class="input">
-              <option value="" disabled>Select a category</option>
+              <option value="" disabled>{{ 'form.selectCategory' | translate }}</option>
               @for (category of availableCategories; track category) {
                 <option [value]="category">{{ category }}</option>
               }
@@ -97,10 +97,10 @@
             <!-- Price -->
             <div>
               <label for="dialog-price" class="label">
-                Price (USD) <span class="text-red-500">*</span>
+                {{ 'form.price' | translate }} <span class="text-red-500">*</span>
               </label>
               <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <div class="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none">
                   <span class="text-surface-400">$</span>
                 </div>
                 <input
@@ -108,7 +108,7 @@
                   id="dialog-price"
                   formControlName="price"
                   [class.input-error]="f['price'].touched && f['price'].invalid"
-                  class="input pl-8"
+                  class="input ps-8"
                   placeholder="0.00"
                   step="0.01"
                   min="0.01">
@@ -126,7 +126,7 @@
             <!-- Quantity -->
             <div>
               <label for="dialog-quantity" class="label">
-                Quantity <span class="text-red-500">*</span>
+                {{ 'form.quantity' | translate }} <span class="text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -152,9 +152,9 @@
           @if (isEditMode() && existingProduct()) {
             <div class="p-4 rounded-xl bg-surface-50 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
               <p class="text-sm text-surface-600 dark:text-surface-400">
-                <span class="font-medium">Product ID:</span> {{ existingProduct()!.id }}
+                <span class="font-medium">{{ 'form.productId' | translate }}:</span> {{ existingProduct()!.id }}
                 <span class="mx-3">|</span>
-                <span class="font-medium">Created:</span> {{ existingProduct()!.createdAt | date:'medium' }}
+                <span class="font-medium">{{ 'form.created' | translate }}:</span> {{ existingProduct()!.createdAt | date:'medium' }}
               </p>
             </div>
           }
@@ -165,7 +165,7 @@
               type="button"
               (click)="onCancel()"
               class="btn-secondary flex-1">
-              Cancel
+              {{ 'common.cancel' | translate }}
             </button>
             <button
               type="submit"
@@ -176,12 +176,12 @@
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span>Saving...</span>
+                <span>{{ 'common.saving' | translate }}</span>
               } @else {
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span>{{ isEditMode() ? 'Update Product' : 'Add Product' }}</span>
+                <span>{{ isEditMode() ? ('products.updateProduct' | translate) : ('products.addProduct' | translate) }}</span>
               }
             </button>
           </div>
@@ -195,16 +195,16 @@
     <!-- Header -->
     <div class="mb-8">
       <a routerLink="/products" class="inline-flex items-center gap-2 text-sm text-surface-500 hover:text-primary-600 dark:text-surface-400 dark:hover:text-primary-400 transition-colors mb-4">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
-        Back to Products
+        {{ 'products.backToProducts' | translate }}
       </a>
       <h1 class="text-2xl sm:text-3xl font-bold text-surface-900 dark:text-white">
-        {{ isEditMode() ? 'Edit Product' : 'Add New Product' }}
+        {{ isEditMode() ? ('products.editProduct' | translate) : ('products.newProduct' | translate) }}
       </h1>
       <p class="mt-1 text-surface-500 dark:text-surface-400">
-        {{ isEditMode() ? 'Update the product information below' : 'Fill in the details to add a new product' }}
+        {{ isEditMode() ? ('form.updateInfo' | translate) : ('form.addInfo' | translate) }}
       </p>
     </div>
 
@@ -225,7 +225,7 @@
         <!-- Product Name -->
         <div>
           <label for="name" class="label">
-            Product Name <span class="text-red-500">*</span>
+            {{ 'form.productName' | translate }} <span class="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -233,7 +233,7 @@
             formControlName="name"
             [class.input-error]="f['name'].touched && f['name'].invalid"
             class="input"
-            placeholder="Enter product name">
+            [placeholder]="'form.enterProductName' | translate">
           @if (f['name'].touched && f['name'].invalid) {
             <p class="mt-1.5 text-sm text-red-500 flex items-center gap-1">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,14 +247,14 @@
         <!-- Category -->
         <div>
           <label for="category" class="label">
-            Category <span class="text-red-500">*</span>
+            {{ 'form.category' | translate }} <span class="text-red-500">*</span>
           </label>
           <select
             id="category"
             formControlName="category"
             [class.input-error]="f['category'].touched && f['category'].invalid"
             class="input">
-            <option value="" disabled>Select a category</option>
+            <option value="" disabled>{{ 'form.selectCategory' | translate }}</option>
             @for (category of availableCategories; track category) {
               <option [value]="category">{{ category }}</option>
             }
@@ -274,10 +274,10 @@
           <!-- Price -->
           <div>
             <label for="price" class="label">
-              Price (USD) <span class="text-red-500">*</span>
+              {{ 'form.price' | translate }} <span class="text-red-500">*</span>
             </label>
             <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <div class="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none">
                 <span class="text-surface-400">$</span>
               </div>
               <input
@@ -285,7 +285,7 @@
                 id="price"
                 formControlName="price"
                 [class.input-error]="f['price'].touched && f['price'].invalid"
-                class="input pl-8"
+                class="input ps-8"
                 placeholder="0.00"
                 step="0.01"
                 min="0.01">
@@ -303,7 +303,7 @@
           <!-- Quantity -->
           <div>
             <label for="quantity" class="label">
-              Quantity <span class="text-red-500">*</span>
+              {{ 'form.quantity' | translate }} <span class="text-red-500">*</span>
             </label>
             <input
               type="number"
@@ -329,9 +329,9 @@
         @if (isEditMode() && existingProduct()) {
           <div class="p-4 rounded-xl bg-surface-50 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
             <p class="text-sm text-surface-600 dark:text-surface-400">
-              <span class="font-medium">Product ID:</span> {{ existingProduct()!.id }}
+              <span class="font-medium">{{ 'form.productId' | translate }}:</span> {{ existingProduct()!.id }}
               <span class="mx-3">|</span>
-              <span class="font-medium">Created:</span> {{ existingProduct()!.createdAt | date:'medium' }}
+              <span class="font-medium">{{ 'form.created' | translate }}:</span> {{ existingProduct()!.createdAt | date:'medium' }}
             </p>
           </div>
         }
@@ -342,7 +342,7 @@
             type="button"
             (click)="onCancel()"
             class="btn-secondary flex-1 sm:flex-none">
-            Cancel
+            {{ 'common.cancel' | translate }}
           </button>
           <button
             type="submit"
@@ -353,12 +353,12 @@
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              <span>Saving...</span>
+              <span>{{ 'common.saving' | translate }}</span>
             } @else {
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
               </svg>
-              <span>{{ isEditMode() ? 'Update Product' : 'Add Product' }}</span>
+              <span>{{ isEditMode() ? ('products.updateProduct' | translate) : ('products.addProduct' | translate) }}</span>
             }
           </button>
         </div>

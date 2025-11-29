@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pagination',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
@@ -96,4 +97,3 @@ export class PaginationComponent {
     return typeof value === 'number';
   }
 }
-

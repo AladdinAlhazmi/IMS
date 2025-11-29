@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "Inventory",
+    "footer": "Built with Angular 17 & Tailwind CSS"
+  },
+  "nav": {
+    "products": "Products"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "save": "Save",
+    "reset": "Reset",
+    "resetFilters": "Reset Filters",
+    "filters": "Filters",
+    "search": "Search",
+    "actions": "Actions",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "required": "required"
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "Manage your inventory with ease",
+    "addProduct": "Add Product",
+    "editProduct": "Edit Product",
+    "newProduct": "Add New Product",
+    "updateProduct": "Update Product",
+    "backToProducts": "Back to Products",
+    "noProductsFound": "No products found",
+    "tryAdjusting": "Try adjusting your search or filter criteria",
+    "getStarted": "Get started by adding your first product",
+    "clearFilters": "Clear Filters",
+    "productFound": "product found",
+    "productsFound": "products found"
+  },
+  "table": {
+    "product": "Product",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "status": "Status",
+    "added": "Added",
+    "actions": "Actions"
+  },
+  "status": {
+    "inStock": "In Stock",
+    "low": "Low",
+    "critical": "Critical"
+  },
+  "form": {
+    "productName": "Product Name",
+    "category": "Category",
+    "price": "Price (USD)",
+    "quantity": "Quantity",
+    "selectCategory": "Select a category",
+    "enterProductName": "Enter product name",
+    "productId": "Product ID",
+    "created": "Created",
+    "updateInfo": "Update the product information below",
+    "addInfo": "Fill in the details to add a new product"
+  },
+  "validation": {
+    "required": "{{field}} is required",
+    "minLength": "{{field}} must be at least {{min}} characters",
+    "maxLength": "{{field}} cannot exceed {{max}} characters",
+    "min": "{{field}} must be at least {{min}}",
+    "max": "{{field}} cannot exceed {{max}}",
+    "pattern": "{{field}} must be a whole number",
+    "invalid": "Invalid value"
+  },
+  "errors": {
+    "updateFailed": "Failed to update product. Please try again.",
+    "unexpected": "An unexpected error occurred. Please try again."
+  },
+  "delete": {
+    "title": "Delete Product",
+    "confirmation": "Are you sure you want to delete this product? This action cannot be undone."
+  },
+  "pagination": {
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "results": "results",
+    "previousPage": "Previous page",
+    "nextPage": "Next page"
+  },
+  "filter": {
+    "searchProducts": "Search products...",
+    "allCategories": "All Categories",
+    "sortBy": "Sort By",
+    "sortAscending": "Sort ascending",
+    "sortDescending": "Sort descending"
+  },
+  "sort": {
+    "name": "Name",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "createdAt": "Date Added"
+  },
+  "view": {
+    "tableView": "Table view",
+    "cardView": "Card view"
+  },
+  "aria": {
+    "closeDialog": "Close dialog",
+    "editProduct": "Edit product",
+    "deleteProduct": "Delete product",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  }
+}
+

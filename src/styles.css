@@ -140,3 +140,47 @@
   }
 }
 
+/* RTL Support - using non-nested selectors for Tailwind compatibility */
+[dir="rtl"] .table th {
+  text-align: right;
+}
+
+[dir="rtl"] .text-gradient {
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
+}
+
+[dir="rtl"] .btn-primary,
+[dir="rtl"] .btn-danger {
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
+}
+
+[dir="rtl"] .rtl\:rotate-180 {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .table th.text-right,
+[dir="rtl"] .table td.text-right {
+  text-align: left;
+}
+
+/* Arabic font improvements */
+[dir="rtl"] body {
+  font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', 'Arial', sans-serif;
+}
+
+/* Animation support for RTL */
+[dir="rtl"] .animate-slide-down {
+  animation: slideDownRTL 0.2s ease-out;
+}
+
+@keyframes slideDownRTL {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

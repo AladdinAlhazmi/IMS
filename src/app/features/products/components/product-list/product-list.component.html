@@ -3,10 +3,10 @@
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
       <h1 class="text-2xl sm:text-3xl font-bold text-surface-900 dark:text-white">
-        Products
+        {{ 'products.title' | translate }}
       </h1>
       <p class="mt-1 text-surface-500 dark:text-surface-400">
-        Manage your inventory with ease
+        {{ 'products.subtitle' | translate }}
       </p>
     </div>
     <div class="flex items-center gap-3">
@@ -16,7 +16,7 @@
           (click)="viewMode.set('table')"
           [class.active]="viewMode() === 'table'"
           class="view-toggle-btn"
-          aria-label="Table view">
+          [attr.aria-label]="'view.tableView' | translate">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
           </svg>
@@ -25,7 +25,7 @@
           (click)="viewMode.set('cards')"
           [class.active]="viewMode() === 'cards'"
           class="view-toggle-btn"
-          aria-label="Card view">
+          [attr.aria-label]="'view.cardView' | translate">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
           </svg>
@@ -37,7 +37,7 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
-        <span>Add Product</span>
+        <span>{{ 'products.addProduct' | translate }}</span>
       </button>
     </div>
   </div>
@@ -58,11 +58,11 @@
   <div class="flex items-center justify-between">
     <p class="text-sm text-surface-500 dark:text-surface-400">
       @if (totalProducts() === 0) {
-        No products found
+        {{ 'products.noProductsFound' | translate }}
       } @else if (totalProducts() === 1) {
-        1 product found
+        1 {{ 'products.productFound' | translate }}
       } @else {
-        {{ totalProducts() }} products found
+        {{ totalProducts() }} {{ 'products.productsFound' | translate }}
       }
     </p>
   </div>
@@ -76,24 +76,24 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
         </svg>
       </div>
-      <h3 class="text-lg font-semibold text-surface-900 dark:text-white mb-2">No products found</h3>
+      <h3 class="text-lg font-semibold text-surface-900 dark:text-white mb-2">{{ 'products.noProductsFound' | translate }}</h3>
       <p class="text-surface-500 dark:text-surface-400 mb-6">
         @if (uiState().searchKeyword || uiState().selectedCategory) {
-          Try adjusting your search or filter criteria
+          {{ 'products.tryAdjusting' | translate }}
         } @else {
-          Get started by adding your first product
+          {{ 'products.getStarted' | translate }}
         }
       </p>
       @if (uiState().searchKeyword || uiState().selectedCategory) {
         <button (click)="onResetFilters()" class="btn-secondary">
-          Clear Filters
+          {{ 'products.clearFilters' | translate }}
         </button>
       } @else {
         <button (click)="openAddDialog()" class="btn-primary">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
           </svg>
-          Add Product
+          {{ 'products.addProduct' | translate }}
         </button>
       }
     </div>
@@ -108,7 +108,7 @@
                 (click)="onColumnSort('name')" 
                 class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
                 <div class="flex items-center gap-1">
-                  <span>Product</span>
+                  <span>{{ 'table.product' | translate }}</span>
                   @if (getSortDirection('name') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -128,7 +128,7 @@
                 (click)="onColumnSort('category')" 
                 class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
                 <div class="flex items-center gap-1">
-                  <span>Category</span>
+                  <span>{{ 'table.category' | translate }}</span>
                   @if (getSortDirection('category') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -148,7 +148,7 @@
                 (click)="onColumnSort('price')" 
                 class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
                 <div class="flex items-center justify-end gap-1">
-                  <span>Price</span>
+                  <span>{{ 'table.price' | translate }}</span>
                   @if (getSortDirection('price') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -168,7 +168,7 @@
                 (click)="onColumnSort('quantity')" 
                 class="text-right cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
                 <div class="flex items-center justify-end gap-1">
-                  <span>Quantity</span>
+                  <span>{{ 'table.quantity' | translate }}</span>
                   @if (getSortDirection('quantity') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -185,13 +185,13 @@
                 </div>
               </th>
               <th>
-                <span>Status</span>
+                <span>{{ 'table.status' | translate }}</span>
               </th>
               <th 
                 (click)="onColumnSort('createdAt')" 
                 class="cursor-pointer select-none hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors">
                 <div class="flex items-center gap-1">
-                  <span>Added</span>
+                  <span>{{ 'table.added' | translate }}</span>
                   @if (getSortDirection('createdAt') === 'asc') {
                     <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -207,7 +207,7 @@
                   }
                 </div>
               </th>
-              <th class="text-right">Actions</th>
+              <th class="text-right">{{ 'table.actions' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -238,7 +238,7 @@
                     <button
                       (click)="openEditDialog(product.id)"
                       class="p-2 rounded-lg text-surface-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-                      aria-label="Edit product">
+                      [attr.aria-label]="'aria.editProduct' | translate">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                       </svg>
@@ -246,7 +246,7 @@
                     <button
                       (click)="confirmDelete(product.id)"
                       class="p-2 rounded-lg text-surface-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                      aria-label="Delete product">
+                      [attr.aria-label]="'aria.deleteProduct' | translate">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                       </svg>
@@ -280,11 +280,11 @@
             
             <div class="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <p class="text-xs text-surface-500 dark:text-surface-400 uppercase tracking-wider">Price</p>
+                <p class="text-xs text-surface-500 dark:text-surface-400 uppercase tracking-wider">{{ 'table.price' | translate }}</p>
                 <p class="text-lg font-bold text-surface-900 dark:text-white">{{ formatPrice(product.price) }}</p>
               </div>
               <div>
-                <p class="text-xs text-surface-500 dark:text-surface-400 uppercase tracking-wider">Quantity</p>
+                <p class="text-xs text-surface-500 dark:text-surface-400 uppercase tracking-wider">{{ 'table.quantity' | translate }}</p>
                 <p class="text-lg font-bold text-surface-900 dark:text-white">{{ product.quantity }}</p>
               </div>
             </div>
@@ -297,7 +297,7 @@
                 <button
                   (click)="openEditDialog(product.id)"
                   class="p-2 rounded-lg text-surface-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-                  aria-label="Edit product">
+                  [attr.aria-label]="'aria.editProduct' | translate">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                   </svg>
@@ -305,7 +305,7 @@
                 <button
                   (click)="confirmDelete(product.id)"
                   class="p-2 rounded-lg text-surface-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                  aria-label="Delete product">
+                  [attr.aria-label]="'aria.deleteProduct' | translate">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                   </svg>
@@ -344,16 +344,16 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
           </svg>
         </div>
-        <h3 class="text-lg font-semibold text-surface-900 dark:text-white mb-2">Delete Product</h3>
+        <h3 class="text-lg font-semibold text-surface-900 dark:text-white mb-2">{{ 'delete.title' | translate }}</h3>
         <p class="text-surface-600 dark:text-surface-400 mb-6">
-          Are you sure you want to delete this product? This action cannot be undone.
+          {{ 'delete.confirmation' | translate }}
         </p>
         <div class="flex gap-3 justify-center">
           <button (click)="cancelDelete()" class="btn-secondary flex-1 sm:flex-none">
-            Cancel
+            {{ 'common.cancel' | translate }}
           </button>
           <button (click)="deleteProduct(deleteConfirmId()!)" class="btn-danger flex-1 sm:flex-none">
-            Delete
+            {{ 'common.delete' | translate }}
           </button>
         </div>
       </div>

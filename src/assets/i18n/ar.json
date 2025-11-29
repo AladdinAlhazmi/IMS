@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "المخزون",
+    "footer": "تم إنشاؤه باستخدام Angular 17 و Tailwind CSS"
+  },
+  "nav": {
+    "products": "المنتجات"
+  },
+  "common": {
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "save": "حفظ",
+    "reset": "إعادة تعيين",
+    "resetFilters": "إعادة تعيين الفلاتر",
+    "filters": "الفلاتر",
+    "search": "بحث",
+    "actions": "إجراءات",
+    "loading": "جاري التحميل...",
+    "saving": "جاري الحفظ...",
+    "required": "مطلوب"
+  },
+  "products": {
+    "title": "المنتجات",
+    "subtitle": "إدارة المخزون بسهولة",
+    "addProduct": "إضافة منتج",
+    "editProduct": "تعديل المنتج",
+    "newProduct": "إضافة منتج جديد",
+    "updateProduct": "تحديث المنتج",
+    "backToProducts": "العودة إلى المنتجات",
+    "noProductsFound": "لم يتم العثور على منتجات",
+    "tryAdjusting": "حاول تعديل معايير البحث أو التصفية",
+    "getStarted": "ابدأ بإضافة منتجك الأول",
+    "clearFilters": "مسح الفلاتر",
+    "productFound": "منتج",
+    "productsFound": "منتجات"
+  },
+  "table": {
+    "product": "المنتج",
+    "category": "الفئة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "status": "الحالة",
+    "added": "تاريخ الإضافة",
+    "actions": "إجراءات"
+  },
+  "status": {
+    "inStock": "متوفر",
+    "low": "منخفض",
+    "critical": "حرج"
+  },
+  "form": {
+    "productName": "اسم المنتج",
+    "category": "الفئة",
+    "price": "السعر (دولار)",
+    "quantity": "الكمية",
+    "selectCategory": "اختر فئة",
+    "enterProductName": "أدخل اسم المنتج",
+    "productId": "معرف المنتج",
+    "created": "تاريخ الإنشاء",
+    "updateInfo": "قم بتحديث معلومات المنتج أدناه",
+    "addInfo": "املأ التفاصيل لإضافة منتج جديد"
+  },
+  "validation": {
+    "required": "{{field}} مطلوب",
+    "minLength": "{{field}} يجب أن يكون {{min}} أحرف على الأقل",
+    "maxLength": "{{field}} لا يمكن أن يتجاوز {{max}} حرف",
+    "min": "{{field}} يجب أن يكون {{min}} على الأقل",
+    "max": "{{field}} لا يمكن أن يتجاوز {{max}}",
+    "pattern": "{{field}} يجب أن يكون رقماً صحيحاً",
+    "invalid": "قيمة غير صالحة"
+  },
+  "errors": {
+    "updateFailed": "فشل تحديث المنتج. يرجى المحاولة مرة أخرى.",
+    "unexpected": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
+  },
+  "delete": {
+    "title": "حذف المنتج",
+    "confirmation": "هل أنت متأكد من حذف هذا المنتج؟ لا يمكن التراجع عن هذا الإجراء."
+  },
+  "pagination": {
+    "showing": "عرض",
+    "to": "إلى",
+    "of": "من",
+    "results": "نتائج",
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية"
+  },
+  "filter": {
+    "searchProducts": "البحث عن منتجات...",
+    "allCategories": "جميع الفئات",
+    "sortBy": "ترتيب حسب",
+    "sortAscending": "ترتيب تصاعدي",
+    "sortDescending": "ترتيب تنازلي"
+  },
+  "sort": {
+    "name": "الاسم",
+    "category": "الفئة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "createdAt": "تاريخ الإضافة"
+  },
+  "view": {
+    "tableView": "عرض جدول",
+    "cardView": "عرض بطاقات"
+  },
+  "aria": {
+    "closeDialog": "إغلاق الحوار",
+    "editProduct": "تعديل المنتج",
+    "deleteProduct": "حذف المنتج",
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
+  }
+}
+

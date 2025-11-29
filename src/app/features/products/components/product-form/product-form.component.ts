@@ -2,13 +2,14 @@ import { Component, OnInit, inject, signal, Input, Output, EventEmitter } from '
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductService } from '@core/services/product.service';
 import { Product, ProductFormData } from '@core/models/product.model';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css'
 })
@@ -20,6 +21,7 @@ export class ProductFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private router = inject(Router);
+  private translateService = inject(TranslateService);
 
   form!: FormGroup;
   isEditMode = signal(false);
@@ -90,37 +92,51 @@ export class ProductFormComponent implements OnInit {
     if (!control || !control.errors || !control.touched) return '';
 
     const errors = control.errors;
+    const fieldLabel = this.getFieldLabel(controlName);
     
     if (errors['required']) {
-      return `${this.getFieldLabel(controlName)} is required`;
+      return this.translateService.instant('validation.required', { field: fieldLabel });
     }
     if (errors['minlength']) {
-      return `${this.getFieldLabel(controlName)} must be at least ${errors['minlength'].requiredLength} characters`;
+      return this.translateService.instant('validation.minLength', { 
+        field: fieldLabel, 
+        min: errors['minlength'].requiredLength 
+      });
     }
     if (errors['maxlength']) {
-      return `${this.getFieldLabel(controlName)} cannot exceed ${errors['maxlength'].requiredLength} characters`;
+      return this.translateService.instant('validation.maxLength', { 
+        field: fieldLabel, 
+        max: errors['maxlength'].requiredLength 
+      });
     }
     if (errors['min']) {
-      return `${this.getFieldLabel(controlName)} must be at least ${errors['min'].min}`;
+      return this.translateService.instant('validation.min', { 
+        field: fieldLabel, 
+        min: errors['min'].min 
+      });
     }
     if (errors['max']) {
-      return `${this.getFieldLabel(controlName)} cannot exceed ${errors['max'].max}`;
+      return this.translateService.instant('validation.max', { 
+        field: fieldLabel, 
+        max: errors['max'].max 
+      });
     }
     if (errors['pattern']) {
-      return `${this.getFieldLabel(controlName)} must be a whole number`;
+      return this.translateService.instant('validation.pattern', { field: fieldLabel });
     }
     
-    return 'Invalid value';
+    return this.translateService.instant('validation.invalid');
   }
 
   private getFieldLabel(controlName: string): string {
-    const labels: Record<string, string> = {
-      name: 'Product name',
-      category: 'Category',
-      price: 'Price',
-      quantity: 'Quantity'
+    const labelKeys: Record<string, string> = {
+      name: 'form.productName',
+      category: 'form.category',
+      price: 'form.price',
+      quantity: 'form.quantity'
     };
-    return labels[controlName] || controlName;
+    const key = labelKeys[controlName];
+    return key ? this.translateService.instant(key) : controlName;
   }
 
   onSubmit(): void {
@@ -152,7 +168,7 @@ export class ProductFormComponent implements OnInit {
             this.router.navigate(['/products']);
           }
         } else {
-          this.submitError.set('Failed to update product. Please try again.');
+          this.submitError.set(this.translateService.instant('errors.updateFailed'));
         }
       } else {
         this.productService.create(formData);
@@ -163,7 +179,7 @@ export class ProductFormComponent implements OnInit {
         }
       }
     } catch (error) {
-      this.submitError.set('An unexpected error occurred. Please try again.');
+      this.submitError.set(this.translateService.instant('errors.unexpected'));
     } finally {
       this.isSubmitting.set(false);
     }
@@ -177,4 +193,3 @@ export class ProductFormComponent implements OnInit {
     }
   }
 }
-

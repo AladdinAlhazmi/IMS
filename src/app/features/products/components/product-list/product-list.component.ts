@@ -1,17 +1,20 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductService } from '@core/services/product.service';
 import { SortField, SortDirection } from '@core/models/product.model';
 import { QuantityHighlightDirective } from '@core/directives/quantity-highlight.directive';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
+import { LanguageService } from '@core/services/language.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
     CommonModule,
+    TranslateModule,
     QuantityHighlightDirective,
     PaginationComponent,
     SearchFilterComponent,
@@ -22,6 +25,8 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 })
 export class ProductListComponent {
   private productService = inject(ProductService);
+  private translateService = inject(TranslateService);
+  readonly languageService = inject(LanguageService);
 
   // Expose service signals to template
   readonly products = this.productService.paginatedProducts;
@@ -105,14 +110,16 @@ export class ProductListComponent {
   }
 
   formatPrice(price: number): string {
-    return new Intl.NumberFormat('en-US', {
+    const locale = this.languageService.currentLanguage() === 'ar' ? 'ar-SA' : 'en-US';
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: 'USD'
     }).format(price);
   }
 
   formatDate(date: Date): string {
-    return new Intl.DateTimeFormat('en-US', {
+    const locale = this.languageService.currentLanguage() === 'ar' ? 'ar-SA' : 'en-US';
+    return new Intl.DateTimeFormat(locale, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -126,8 +133,8 @@ export class ProductListComponent {
   }
 
   getStockLabel(quantity: number): string {
-    if (quantity <= 5) return 'Critical';
-    if (quantity <= 10) return 'Low';
-    return 'In Stock';
+    if (quantity <= 5) return this.translateService.instant('status.critical');
+    if (quantity <= 10) return this.translateService.instant('status.low');
+    return this.translateService.instant('status.inStock');
   }
 }

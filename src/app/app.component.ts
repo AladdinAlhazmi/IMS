@@ -1,17 +1,20 @@
 import { Component, OnInit, inject, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { StorageService } from './core/services/storage.service';
+import { LanguageService } from './core/services/language.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   private storageService = inject(StorageService);
+  readonly languageService = inject(LanguageService);
   
   isDarkMode = signal(false);
   isMobileMenuOpen = signal(false);
@@ -48,5 +51,8 @@ export class AppComponent implements OnInit {
   closeMobileMenu(): void {
     this.isMobileMenuOpen.set(false);
   }
-}
 
+  toggleLanguage(): void {
+    this.languageService.toggleLanguage();
+  }
+}
